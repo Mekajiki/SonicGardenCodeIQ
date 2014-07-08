@@ -4,9 +4,11 @@ class KaraokeMachine
   end
 
   def transpose(ammount)
+    convert_table = CODES.zip(CODES.rotate(ammount)).to_h
+
     symbols.map do |symbol|
       if code_num = CODES.index(symbol)
-        CODES[(code_num + ammount) % CODES.length]
+        convert_table[symbol]
       else
         symbol
       end
